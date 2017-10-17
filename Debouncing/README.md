@@ -1,15 +1,22 @@
-# Software Debouncing
-In previously labs, we talked about how objects such as switches can cause some nasty effects since they are actually a mechanical system at heart. We talked about the simple hardware method of debouncing, but due to the many different design constraints, you may not be able to add or adjust hardware. Debouncing is also only one of many applications which would require the use of built in Timers to allow for other processes to take place.
+# Timer A Blink
+The code for this lab is not much different than the Button interupt where we used the main counter to blink an LED with a 50% duty cycle. The only difference with this is that the code checks if the button is pressed and if it is, it debounces the signal by delaying it just a tad so that physical contact bouncing does not undesirably trigger any LEDs.
+# The following boards are used in this lab:
+* MSP430G2553
+* MSP430F5529
+* MSP430FR2311
+* MSP430FR5994
+* MSP430FR6989
 
-## Task
-You need to utilize the TIMER modules within the MSP430 processors to implement a debounced switch to control the state of an LED. You most likely will want to hook up your buttons on the development boards to an oscilloscope to see how much time it takes for the buttons to settle. The idea here is that your processor should be able to run other code, while relying on timers and interrupts to manage the debouncing in the background. You should not be using polling techniques for this assignment. Your code should also be able to detect 
+## Dependencies
+The dependencies for this lab is the MSP430.h library that is included when you build a new project in code composer
 
-### Hints
-You need to take a look at how the P1IE and P1IES registers work and how to control them within an interrupt routine. Remember that the debouncing is not going to be the main process you are going to run by the end of the lab.
+## Outputs:
+The LEDs used for this are the following pins. 
+G2553: P1.0 and P1.6
+5529: P1.0 and P4.7
+5594: P1.0 and P1.1
+2311: P1.0 and P2.0
+6989: P1.0 and P9.7
 
-## Extra Work
-### Low Power Modes
-Go into the datasheets or look online for information about the low power modes of your processors and using Energy Trace, see what the lowest power consumption you can achieve while still running your debouncing code. Take a note when your processor is not driving the LED (or unplug the header connecting the LED and check) but running the interrupt routine for your debouncing.
-
-### Double the fun
-Can you expand your code to debounce two switches? Do you have to use two Timer peripherals to do this?
+## Code Functionality
+* The general code for every board is the same. The differences include pin numbers for the inputs and outputs, and for the FR boards, High impedance mode must be turned off.

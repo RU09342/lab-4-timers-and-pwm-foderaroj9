@@ -1,15 +1,23 @@
 # Hardware PWM
-Now that you have done the software version of PWM, now it is time to start leveraging the other features of these Timer Modules.
+The code for this lab is used to blink an LED with a changing duty cycle. The timer is set to CCR0 and varies by CCR1 with every button press.
 
-## Task
-You need to replicate the same behavior as in the software PWM, only using the Timer Modules ability to directly output to a GPIO Pin instead of managing them in software. 
+# The following boards are used in this lab:
+* MSP430G2553
+* MSP430F5529
+* MSP430FR2311
+* MSP430FR5994
+* MSP430FR6989
 
-### Hints 
-Read up on the P1SEL registers as well as look at the Timer modules ability to multiplex.
+## Dependencies
+The dependencies for this lab is the MSP430.h library that is included when you build a new project in code composer
 
-## Extra Work
-### Using ACLK
-Some of these microprocessors have a built in ACLK which is extremely slow compared to your up to 25MHz available on some of them. What is the overall impact on the system when using this clock? Can you actually use your PWM code with a clock that slow?
+## Outputs:
+The LEDs used for this are the following pins. 
+G2553: P1.0 and P1.6
+5529: P1.2 and P4.7
+5994: P1.0 and P1.1
+2311: P1.0 and P2.0
+6989: P1.0 and P1.1
 
-### Ultra Low Power
-Using a combination of ACLK, Low Power Modes, and any other means you may deem necessary, optimize this PWM code to run at 50% duty cycle with a LED on the MSP430FR5994. In particular, time how long your code can run on the fully charged super capacitor. You do not need to worry about the button control in this case, and you will probably want to disable all the GPIO that you are not using (nudge, nudge, hint, hint).
+## Code Functionality
+* The general code for every board is the same. The differences include pin numbers for the inputs and outputs, and for the FR boards, High impedance mode must be turned off.
